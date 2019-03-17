@@ -11,6 +11,17 @@ module.exports = {
             .set('@$', resolve('src'))
             .set('styles', resolve('src/assets/styles'))
             .set('assets',resolve('src/assets'))
+    },
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8080',
+                changeOrigin: true,
+                pathRewrite: {
+                    '^/api': '/mock'
+                }
+            }
+        }
     }
 }
 
